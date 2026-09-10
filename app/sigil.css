@@ -1,0 +1,50 @@
+.professional-sigil-frame {
+  position: fixed;
+  top: 2rem;
+  right: 2.5rem;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.professional-sigil-frame--docked {
+  left: 2rem;
+  right: auto;
+  top: 2rem;
+}
+
+.professional-sigil-frame--docked .professional-sigil {
+  height: 160px;
+}
+
+.professional-sigil {
+  position: relative;
+  display: inline-block;
+  height: clamp(336px, 29vw, 440px);
+  width: auto;
+  overflow: visible;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.professional-sigil__art {
+  display: block;
+  height: 100%;
+  width: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@media (min-width: 1280px) {
+  .professional-sigil-frame {
+    right: 3.5rem;
+  }
+
+  .professional-sigil-frame--docked {
+    left: 2rem;
+    right: auto;
+  }
+
+  .professional-sigil {
+    height: clamp(350px, 27vw, 440px);
+  }
+}

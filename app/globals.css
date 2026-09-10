@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@import "./sigil.css";
+
+body {
+  margin: 0;
+  background: #000;
+}
