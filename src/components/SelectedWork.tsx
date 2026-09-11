@@ -1,5 +1,14 @@
 import Link from "next/link";
-import type { Project } from "@/src/content/professionalHome";
+
+type Project = {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  summary: string;
+  tags: readonly string[];
+  accent: "violet" | "cyan" | "amber";
+};
 
 type SelectedWorkProps = {
   projects: Project[];

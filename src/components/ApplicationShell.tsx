@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
+import MobileNavigation from "@/src/components/MobileNavigation";
 import NavigationRail from "@/src/components/NavigationRail";
 import ProfessionalSigil from "@/src/components/ProfessionalSigil";
 
@@ -30,10 +31,11 @@ export default function ApplicationShell({ children }: ApplicationShellProps) {
   return (
     <div className="relative min-h-screen bg-[#0a0a0b] text-white">
       <NavigationRail sigilDocked={heroPassed} />
+      <MobileNavigation />
       <div className={`professional-sigil-frame${heroPassed ? " professional-sigil-frame--docked" : ""}`}>
         <ProfessionalSigil />
       </div>
-      <main className="min-h-screen px-6 py-12 lg:pl-72 lg:pr-16 lg:pt-20">{children}</main>
+      <main className="min-h-screen px-6 pb-12 pt-28 lg:pl-72 lg:pr-16 lg:pt-20">{children}</main>
     </div>
   );
 }

@@ -12,6 +12,7 @@ export type Project = {
   summary: string;
   tags: string[];
   accent: "violet" | "cyan" | "amber";
+  sortOrder?: number;
 };
 
 export const professionalHomeContent = {
@@ -42,6 +43,7 @@ export const professionalHomeContent = {
       summary: "A clearer operating rhythm for a growing team navigating change.",
       tags: ["Strategy", "Operations"],
       accent: "violet",
+      sortOrder: 1,
     },
     {
       id: "project-02",
@@ -51,6 +53,7 @@ export const professionalHomeContent = {
       summary: "Connecting customer insight, process design, and measurable delivery.",
       tags: ["Research", "Design"],
       accent: "cyan",
+      sortOrder: 2,
     },
     {
       id: "project-03",
@@ -60,6 +63,7 @@ export const professionalHomeContent = {
       summary: "Turning scattered signals into decisions a team can act on.",
       tags: ["Data", "Enablement"],
       accent: "amber",
+      sortOrder: 3,
     },
   ] satisfies Project[],
 };

@@ -1,10 +1,42 @@
 import Link from "next/link";
 import SelectedWork from "@/src/components/SelectedWork";
 import ProfessionalLayout from "@/src/components/ProfessionalLayout";
-import { professionalHomeContent } from "@/src/content/professionalHome";
+import { contentBlockRecords } from "@/src/content/professional/contentBlocks";
+import { expertiseRecords } from "@/src/content/professional/expertise";
+import { homepagePlacementRecords } from "@/src/content/professional/homepagePlacements";
+import { projectRecords } from "@/src/content/professional/projects";
+
+const projects = homepagePlacementRecords
+  .slice()
+  .sort((a, b) => a.sort_order - b.sort_order)
+  .map((placement) => {
+    const project = projectRecords.find((record) => record.id === placement.project_id);
+    return project
+      ? {
+          id: project.id,
+          slug: project.slug,
+          title: project.title,
+          category: project.category,
+          summary: project.summary,
+          tags: project.tags,
+          accent: placement.accent,
+        }
+      : null;
+  })
+  .filter((project): project is NonNullable<typeof project> => project !== null);
+
+const contactBlock = contentBlockRecords.find((record) => record.section === "contact_info");
+const contact = contactBlock?.metadata ?? { email: "", linkedin: "", location: "", availability: "" };
+const expertise = expertiseRecords.slice().sort((a, b) => a.sort_order - b.sort_order);
 
 export default function ProfessionalHome() {
-  const { hero, about, contact, expertise, projects } = professionalHomeContent;
+  const hero = {
+    title: "Evidence, not adjectives.",
+    body: "I build systems that scale, teams that thrive, and experiences that matter.",
+  };
+  const about = {
+    body: "I work at the intersection of operations, technology, and people to make complex systems clearer and more useful.",
+  };
 
   return (
     <ProfessionalLayout>
@@ -53,7 +85,7 @@ export default function ProfessionalHome() {
           {expertise.map((item, index) => (
             <div key={item.id} className="flex items-center gap-6 border-t border-white/10 py-5 last:border-b">
               <span className="w-8 font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-white/35">{String(index + 1).padStart(2, "0")}</span>
-              <span className="flex h-7 w-7 items-center justify-center border border-white/20 font-mono text-xs text-white/60">{item.glyph}</span>
+              <span className="flex h-7 w-7 items-center justify-center border border-white/20 font-mono text-xs text-white/60">{item.glyph_key.slice(0, 1).toUpperCase()}</span>
               <span className="font-serif text-xl font-normal text-white/90 lg:text-2xl">{item.title}</span>
             </div>
           ))}
